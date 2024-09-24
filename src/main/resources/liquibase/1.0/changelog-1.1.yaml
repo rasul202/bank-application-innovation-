@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: creating "orders" table
+      author: Rasul Taghisoy
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: client_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: order_date
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: creating "order_details" table
+      author: Rasul Taghisoy
+      changes:
+        - createTable:
+            tableName: order_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: integer
+              - column:
+                  name: price
+                  type: number(16,2)
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: order_id
+                  type: bigint
+                  constraints:
+                    references: orders(id)
+                    foreignKeyName: fk_order_id
+
+

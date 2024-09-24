@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: add status column to orders table
+      author: Rasul
+      changes:
+        - addColumn:
+            tableName: orders
+            columns:
+              - column:
+                  name: status
+                  type: integer
+
+  - changeSet:
+      id: add status column to order_details table
+      author: Rasul
+      changes:
+        - addColumn:
+            tableName: order_details
+            columns:
+              - column:
+                  name: status
+                  type: integer
